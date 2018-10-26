@@ -38,6 +38,9 @@ public class Main {
         pensil2B.setJumlahMasuk(14);
         pensil2B.setJumlahKeluar(5);
         pensil2B.setKondisiPenyimpanan("Tidak Pecah Belah");
+        
+        
+        
     }
 
 }

@@ -34,6 +34,7 @@ public class Perkakas extends Gudang {
         this.biayaPenyimpanan = biayaPenyimpanan;
     }
 
+    
     @Override
     public int getJumlahMasuk() {
         return jumlahMasuk;
