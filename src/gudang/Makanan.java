@@ -11,7 +11,6 @@ package gudang;
  */
 public class Makanan extends Gudang {
 
-    
     private int lamaPenyimpanan, biayaPenyimpanan, jumlahMasuk, jumlahKeluar, jumlahTersedia;
     private String kondisiPenyimpanan;
 

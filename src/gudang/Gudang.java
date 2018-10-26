@@ -10,7 +10,8 @@ package gudang;
  * @author User
  */
 public class Gudang {
-    private int lamaPenyimpanan, biayaPenyimpanan,jumlahMasuk,jumlahKeluar, jumlahTersedia;
+
+    private int lamaPenyimpanan, biayaPenyimpanan, jumlahMasuk, jumlahKeluar, jumlahTersedia;
     private String kondisiPenyimpanan;
 
     public int getLamaPenyimpanan() {
@@ -53,6 +54,4 @@ public class Gudang {
         this.kondisiPenyimpanan = kondisiPenyimpanan;
     }
 
-    
-    
 }

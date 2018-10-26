@@ -64,5 +64,4 @@ public class Minuman extends Gudang {
         this.kondisiPenyimpanan = kondisiPenyimpanan;
     }
 
-    
 }

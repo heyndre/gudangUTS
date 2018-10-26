@@ -24,7 +24,6 @@ public class AlatTulis extends Gudang {
         this.lamaPenyimpanan = lamaPenyimpanan;
     }
 
-    
     @Override
     public int getBiayaPenyimpanan() {
         return biayaPenyimpanan;
