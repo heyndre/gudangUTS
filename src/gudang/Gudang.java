@@ -5,14 +5,60 @@
  */
 package gudang;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author User
  */
 public class Gudang {
 
-    private int lamaPenyimpanan, biayaPenyimpanan, jumlahMasuk, jumlahKeluar, jumlahTersedia;
-    private String kondisiPenyimpanan;
+    private int lamaPenyimpanan, biayaPenyimpanan, jumlahMasuk, jumlahKeluar, jumlahTersedia, kapasitasPenyimpanan;
+    private String kondisiPenyimpanan, namaProduk;
+
+    private ArrayList riwayatJumlahMasuk = new ArrayList();
+    private ArrayList riwayatJumlahKeluar = new ArrayList();
+
+    private void updateJumlahTersedia() {
+        jumlahTersedia += jumlahMasuk;
+        jumlahTersedia -= jumlahKeluar;
+    }
+
+    public int getJumlahTersedia() {
+        return jumlahTersedia;
+    }
+
+    private void updateRiwayatJumlahMasuk() {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dateFormat = simpleDateFormat.format(date);
+        riwayatJumlahMasuk.add(jumlahMasuk + "  \t" + dateFormat);
+    }
+
+    private void updateRiwayatJumlahKeluar() {
+        Date date = new Date();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String dateFormat = simpleDateFormat.format(date);
+        riwayatJumlahKeluar.add(jumlahKeluar + "  \t" + dateFormat);
+    }
+
+    public ArrayList getRiwayatJumlahMasuk() {
+        return riwayatJumlahMasuk;
+    }
+
+    public ArrayList getRiwayatJumlahKeluar() {
+        return riwayatJumlahKeluar;
+    }
+
+    public String getNamaProduk() {
+        return namaProduk;
+    }
+
+    public void setNamaProduk(String namaProduk) {
+        this.namaProduk = namaProduk;
+    }
 
     public int getLamaPenyimpanan() {
         return lamaPenyimpanan;
@@ -30,20 +76,19 @@ public class Gudang {
         this.biayaPenyimpanan = biayaPenyimpanan;
     }
 
-    public int getJumlahMasuk() {
-        return jumlahMasuk;
-    }
-
     public void setJumlahMasuk(int jumlahMasuk) {
         this.jumlahMasuk = jumlahMasuk;
-    }
-
-    public int getJumlahKeluar() {
-        return jumlahKeluar;
+        updateRiwayatJumlahMasuk();
+        updateJumlahTersedia();
+        this.jumlahMasuk = 0;
     }
 
     public void setJumlahKeluar(int jumlahKeluar) {
         this.jumlahKeluar = jumlahKeluar;
+        updateRiwayatJumlahKeluar();
+        updateJumlahTersedia();
+        this.jumlahKeluar = 0;
+
     }
 
     public String getKondisiPenyimpanan() {
@@ -52,6 +97,26 @@ public class Gudang {
 
     public void setKondisiPenyimpanan(String kondisiPenyimpanan) {
         this.kondisiPenyimpanan = kondisiPenyimpanan;
+    }
+
+    public int getKapasitasPenyimpanan() {
+        return kapasitasPenyimpanan;
+    }
+
+    public void setKapasitasPenyimpanan(int kapasitasPenyimpanan) {
+        this.kapasitasPenyimpanan = kapasitasPenyimpanan;
+    }
+
+    public void reset() {
+        lamaPenyimpanan = 0;
+        biayaPenyimpanan = 0;
+        jumlahMasuk = 0;
+        jumlahKeluar = 0;
+        jumlahTersedia = 0;
+        kondisiPenyimpanan = null;
+        namaProduk = null;
+        riwayatJumlahMasuk.clear();
+        riwayatJumlahKeluar.clear();
     }
 
 }
