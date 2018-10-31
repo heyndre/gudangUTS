@@ -5,10 +5,10 @@
  */
 package main;
 
-import gudang.AlatTulis;
-import gudang.Makanan;
-import gudang.Minuman;
-import gudang.Perkakas;
+import gudang.Stationary;
+import gudang.Food;
+import gudang.Drink;
+import gudang.Tool;
 
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -79,10 +79,10 @@ public class Main {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static final ArrayList<AlatTulis> stationarys = new ArrayList<>();
-    private static final ArrayList<Makanan> foods = new ArrayList<>();
-    private static final ArrayList<Minuman> drinks = new ArrayList<>();
-    private static final ArrayList<Perkakas> tools = new ArrayList<>();
+    private static final ArrayList<Stationary> stationarys = new ArrayList<>();
+    private static final ArrayList<Food> foods = new ArrayList<>();
+    private static final ArrayList<Drink> drinks = new ArrayList<>();
+    private static final ArrayList<Tool> tools = new ArrayList<>();
 
     public static void main(String[] args) throws InterruptedException, IOException {
         clearScreen();
@@ -94,11 +94,11 @@ public class Main {
         do {
             System.out.println("========= Selamat Datang di Program WarMaS 1.0 =========");
             System.out.println("========================= MENU =========================");
-            System.out.println("1. Tambahkan Barang");
-            System.out.println("2. Masukkan barang");
+            System.out.println("1. Tambahkan Jenis Barang");
+            System.out.println("2. Masukkan Jumlah barang");
             System.out.println("3. Keluarkan barang");
-            System.out.println("4. Lihat Barang");
-            System.out.println("5. Hapus Barang");
+            System.out.println("4. Lihat Detail Barang");
+            System.out.println("5. Hapus Jenis Barang");
             System.out.println("6. Keluar");
             System.out.print("Pilih: ");
             try {
@@ -139,7 +139,7 @@ public class Main {
     private static void menuTambahkanBarang() throws InterruptedException, IOException {
         boolean diMenuTambahkanBarang = true;
         do {
-            System.out.println("================== Tambahkan Barang ====================");
+            System.out.println("================== Tambahkan Jenis Barang ====================");
             System.out.println("Jenis: ");
             System.out.println("1. Makanan");
             System.out.println("2. Minuman");
@@ -184,11 +184,11 @@ public class Main {
     }
 
     private static void menuTambahkanMakanan() throws InterruptedException, IOException {
-        Makanan food = new Makanan();
+        Food food = new Food();
         boolean diMenuTambahkanMakanan = true;
         do {
             try {
-                System.out.println("================== Tambahkan Barang ====================");
+                System.out.println("================== Tambahkan Jenis Barang ====================");
                 System.out.print("Nama barang            : ");
                 food.setNamaProduk(scanner.nextLine());
                 System.out.print("Kapasitas penyimpanan  : ");
@@ -230,11 +230,11 @@ public class Main {
     }
 
     private static void menutTambahkanMinuman() throws InterruptedException, IOException {
-        Minuman drink = new Minuman();
+        Drink drink = new Drink();
         boolean diMenuTambahkanMinuman = true;
         do {
             try {
-                System.out.println("================== Tambahkan Barang ====================");
+                System.out.println("================== Tambahkan Jenis Barang ====================");
                 System.out.print("Nama barang            : ");
                 drink.setNamaProduk(scanner.nextLine());
                 System.out.print("Kapasitas penyimpanan  : ");
@@ -276,11 +276,11 @@ public class Main {
     }
 
     private static void menuTambahkanAlatTulis() throws InterruptedException, IOException {
-        AlatTulis stationary = new AlatTulis();
+        Stationary stationary = new Stationary();
         boolean diMenuTambahkanAlatTulis = true;
         do {
             try {
-                System.out.println("================== Tambahkan Barang ====================");
+                System.out.println("================== Tambahkan Jenis Barang ====================");
                 System.out.print("Nama barang            : ");
                 stationary.setNamaProduk(scanner.nextLine());
                 System.out.print("Kapasitas penyimpanan  : ");
@@ -322,11 +322,11 @@ public class Main {
     }
 
     private static void menuTambahkanPerkakas() throws InterruptedException, IOException {
-        Perkakas tool = new Perkakas();
+        Tool tool = new Tool();
         boolean diMenuTambahkanPerkakas = true;
         do {
             try {
-                System.out.println("================== Tambahkan Barang ====================");
+                System.out.println("================== Tambahkan Jenis Barang ====================");
                 System.out.print("Nama barang            : ");
                 tool.setNamaProduk(scanner.nextLine());
                 System.out.print("Kapasitas penyimpanan  : ");
@@ -370,7 +370,7 @@ public class Main {
     private static void menuMasukkanBarang() throws InterruptedException, IOException {
         boolean diMenuMasukkanBarang = true;
         do {
-            System.out.println("=================== Masukkan Barang ====================");
+            System.out.println("=================== Masukkan Jumlah Barang ====================");
             if (foods.isEmpty() && drinks.isEmpty() && stationarys.isEmpty() && tools.isEmpty()) {
                 System.out.println("Tidak ada barang");
                 garisPutus();
@@ -419,7 +419,7 @@ public class Main {
                         diMenuMasukkanBarang = false;
                     } else if (pilih > 0 && pilih <= indeksBarang) {
                         int cekIndeksBarang = 0;
-                        System.out.println("=================== Masukkan Barang ====================");
+                        System.out.println("=================== Masukkan Jumlah Barang ====================");
                         System.out.print("Jumlah barang: ");
                         int jumlah = Integer.parseInt(scanner.nextLine());
                         garisTepi();
@@ -613,7 +613,7 @@ public class Main {
     private static void menuLihatBarang() throws InterruptedException, IOException {
         boolean diMenuLihatBarang = true;
         do {
-            System.out.println("===================== Lihat Barang =====================");
+            System.out.println("===================== Lihat Detail Barang =====================");
             if (foods.isEmpty() && drinks.isEmpty() && stationarys.isEmpty() && tools.isEmpty()) {
                 System.out.println("Tidak ada barang");
             } else {
