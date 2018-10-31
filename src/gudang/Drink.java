@@ -9,6 +9,6 @@ package gudang;
  *
  * @author User
  */
-public class Minuman extends Gudang {
+public class Drink extends Repository {
 
 }

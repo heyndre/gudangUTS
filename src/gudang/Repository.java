@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  *
  * @author User
  */
-public class Gudang {
+public class Repository {
 
     private int lamaPenyimpanan, biayaPenyimpanan, jumlahMasuk, jumlahKeluar, jumlahTersedia, kapasitasPenyimpanan;
     private String kondisiPenyimpanan, namaProduk;

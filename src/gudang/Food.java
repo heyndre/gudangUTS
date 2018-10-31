@@ -9,6 +9,6 @@ package gudang;
  *
  * @author User
  */
-public class AlatTulis extends Gudang {
+public class Food extends Repository {
 
 }
