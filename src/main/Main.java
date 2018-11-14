@@ -25,11 +25,11 @@ public class Main {
     }
 
     private static void garisTepi() {
-        System.out.println("========================================================");
+        System.out.println("================================================================================");
     }
 
     private static void garisPutus() {
-        System.out.println("--------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------");
     }
 
     private static void alertPilihanTidakTersedia() throws InterruptedException, IOException {
@@ -92,13 +92,13 @@ public class Main {
     private static void menuUtama() throws InterruptedException, IOException {
         boolean diMenuUtama = true;
         do {
-            System.out.println("========= Selamat Datang di Program WarMaS 1.0 =========");
-            System.out.println("========================= MENU =========================");
-            System.out.println("1. Tambahkan Jenis Barang");
+            System.out.println("===================== Selamat Datang di Program WarMaS 1.0 =====================");
+            System.out.println("===================================== MENU =====================================");
+            System.out.println("1. Tambahkan Daftar Barang");
             System.out.println("2. Masukkan Jumlah barang");
             System.out.println("3. Keluarkan barang");
-            System.out.println("4. Lihat Detail Barang");
-            System.out.println("5. Hapus Jenis Barang");
+            System.out.println("4. Lihat Detail Daftar Barang");
+            System.out.println("5. Hapus Daftar Barang");
             System.out.println("6. Keluar");
             System.out.print("Pilih: ");
             try {
@@ -108,7 +108,7 @@ public class Main {
                 clearScreen();
                 switch (pilih) {
                     case 1:
-                        menuTambahkanBarang();
+                        menuTambahkanDaftarBarang();
                         break;
                     case 2:
                         menuMasukkanBarang();
@@ -117,10 +117,10 @@ public class Main {
                         menuKeluarkanBarang();
                         break;
                     case 4:
-                        menuLihatBarang();
+                        menuLihatDetailDaftarBarang();
                         break;
                     case 5:
-                        menuHapusBarang();
+                        menuHapusDaftarBarang();
                         break;
                     case 6:
                         diMenuUtama = false;
@@ -136,10 +136,10 @@ public class Main {
 
     }
 
-    private static void menuTambahkanBarang() throws InterruptedException, IOException {
-        boolean diMenuTambahkanBarang = true;
+    private static void menuTambahkanDaftarBarang() throws InterruptedException, IOException {
+        boolean diMenuTambahkanDaftarBarang = true;
         do {
-            System.out.println("================== Tambahkan Jenis Barang ====================");
+            System.out.println("=========================== Tambahkan Daftar Barang ============================");
             System.out.println("Jenis: ");
             System.out.println("1. Makanan");
             System.out.println("2. Minuman");
@@ -155,23 +155,23 @@ public class Main {
                 clearScreen();
                 switch (pilih) {
                     case 1:
-                        menuTambahkanMakanan();
-                        diMenuTambahkanBarang = false;
+                        menuTambahkanDaftarMakanan();
+                        diMenuTambahkanDaftarBarang = false;
                         break;
                     case 2:
-                        menutTambahkanMinuman();
-                        diMenuTambahkanBarang = false;
+                        menutTambahkanDaftarMinuman();
+                        diMenuTambahkanDaftarBarang = false;
                         break;
                     case 3:
-                        menuTambahkanAlatTulis();
-                        diMenuTambahkanBarang = false;
+                        menuTambahkanDaftarAlatTulis();
+                        diMenuTambahkanDaftarBarang = false;
                         break;
                     case 4:
-                        menuTambahkanPerkakas();
-                        diMenuTambahkanBarang = false;
+                        menuTambahkanDaftarPerkakas();
+                        diMenuTambahkanDaftarBarang = false;
                         break;
                     case 0:
-                        diMenuTambahkanBarang = false;
+                        diMenuTambahkanDaftarBarang = false;
                         break;
                     default:
                         alertPilihanTidakTersedia();
@@ -179,24 +179,40 @@ public class Main {
             } catch (Exception e) {
                 alertInputTidakValid();
             }
-        } while (diMenuTambahkanBarang);
+        } while (diMenuTambahkanDaftarBarang);
 
     }
 
-    private static void menuTambahkanMakanan() throws InterruptedException, IOException {
+    private static void menuTambahkanDaftarMakanan() throws InterruptedException, IOException {
         Food food = new Food();
-        boolean diMenuTambahkanMakanan = true;
+        boolean diMenuTambahkanDaftarMakanan = true;
         do {
             try {
-                System.out.println("================== Tambahkan Jenis Barang ====================");
-                System.out.print("Nama barang            : ");
-                food.setNamaProduk(scanner.nextLine());
-                System.out.print("Kapasitas penyimpanan  : ");
-                food.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Biaya penyimpanan (Rp.): ");
-                food.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Lama penyimpanan (hari): ");
-                food.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                System.out.println("=========================== Tambahkan Daftar Barang ============================");
+                if (food.getNamaProduk() == null) {
+                    System.out.print("Nama barang            : ");
+                    food.setNamaProduk(scanner.nextLine());
+                } else {
+                    System.out.printf("Nama barang            : %s\n", food.getNamaProduk());
+                }
+                if (food.getKapasitasPenyimpanan() == 0) {
+                    System.out.print("Kapasitas penyimpanan  : ");
+                    food.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Kapasitas penyimpanan  : %d\n", food.getKapasitasPenyimpanan());
+                }
+                if (food.getBiayaPenyimpanan() == 0) {
+                    System.out.print("Biaya penyimpanan (Rp.): ");
+                    food.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Biaya penyimpanan (Rp.): %d\n", food.getBiayaPenyimpanan());
+                }
+                if (food.getLamaPenyimpanan() == 0) {
+                    System.out.print("Lama penyimpanan (hari): ");
+                    food.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Lama penyimpanan (hari): %d\n", food.getLamaPenyimpanan());
+                }
                 System.out.println("Kondisi Penyimpanan    :");
                 System.out.println("1. Pecah belah");
                 System.out.println("2. Bukan pecah belah");
@@ -209,40 +225,54 @@ public class Main {
                     case 1:
                         food.setKondisiPenyimpanan("Pecah belah");
                         alertSukses();
-                        diMenuTambahkanMakanan = false;
+                        diMenuTambahkanDaftarMakanan = false;
                         break;
                     case 2:
                         food.setKondisiPenyimpanan("Bukan pecah belah");
                         alertSukses();
-                        diMenuTambahkanMakanan = false;
+                        diMenuTambahkanDaftarMakanan = false;
                         break;
                     default:
-                        food.reset();
                         alertPilihanTidakTersedia();
                 }
             } catch (Exception e) {
-                food.reset();
                 alertInputTidakValid();
             }
 
-        } while (diMenuTambahkanMakanan);
+        } while (diMenuTambahkanDaftarMakanan);
         foods.add(food);
     }
 
-    private static void menutTambahkanMinuman() throws InterruptedException, IOException {
+    private static void menutTambahkanDaftarMinuman() throws InterruptedException, IOException {
         Drink drink = new Drink();
         boolean diMenuTambahkanMinuman = true;
         do {
             try {
-                System.out.println("================== Tambahkan Jenis Barang ====================");
-                System.out.print("Nama barang            : ");
-                drink.setNamaProduk(scanner.nextLine());
-                System.out.print("Kapasitas penyimpanan  : ");
-                drink.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Biaya penyimpanan (Rp.): ");
-                drink.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Lama penyimpanan (hari): ");
-                drink.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                System.out.println("=========================== Tambahkan Daftar Barang ============================");
+                if (drink.getNamaProduk() == null) {
+                    System.out.print("Nama barang            : ");
+                    drink.setNamaProduk(scanner.nextLine());
+                } else {
+                    System.out.printf("Nama barang            : %s\n", drink.getNamaProduk());
+                }
+                if (drink.getKapasitasPenyimpanan() == 0) {
+                    System.out.print("Kapasitas penyimpanan  : ");
+                    drink.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Kapasitas penyimpanan  : %d\n", drink.getKapasitasPenyimpanan());
+                }
+                if (drink.getBiayaPenyimpanan() == 0) {
+                    System.out.print("Biaya penyimpanan (Rp.): ");
+                    drink.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Biaya penyimpanan (Rp.): %d\n", drink.getBiayaPenyimpanan());
+                }
+                if (drink.getLamaPenyimpanan() == 0) {
+                    System.out.print("Lama penyimpanan (hari): ");
+                    drink.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Lama penyimpanan (hari): %d\n", drink.getLamaPenyimpanan());
+                }
                 System.out.println("Kondisi Penyimpanan    :");
                 System.out.println("1. Pecah belah");
                 System.out.println("2. Bukan pecah belah");
@@ -263,11 +293,9 @@ public class Main {
                         diMenuTambahkanMinuman = false;
                         break;
                     default:
-                        drink.reset();
                         alertPilihanTidakTersedia();
                 }
             } catch (Exception e) {
-                drink.reset();
                 alertInputTidakValid();
             }
 
@@ -275,20 +303,36 @@ public class Main {
         drinks.add(drink);
     }
 
-    private static void menuTambahkanAlatTulis() throws InterruptedException, IOException {
+    private static void menuTambahkanDaftarAlatTulis() throws InterruptedException, IOException {
         Stationary stationary = new Stationary();
         boolean diMenuTambahkanAlatTulis = true;
         do {
             try {
-                System.out.println("================== Tambahkan Jenis Barang ====================");
-                System.out.print("Nama barang            : ");
-                stationary.setNamaProduk(scanner.nextLine());
-                System.out.print("Kapasitas penyimpanan  : ");
-                stationary.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Biaya penyimpanan (Rp.): ");
-                stationary.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Lama penyimpanan (hari): ");
-                stationary.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                System.out.println("=========================== Tambahkan Daftar Barang ============================");
+                if (stationary.getNamaProduk() == null) {
+                    System.out.print("Nama barang            : ");
+                    stationary.setNamaProduk(scanner.nextLine());
+                } else {
+                    System.out.printf("Nama barang            : %s\n", stationary.getNamaProduk());
+                }
+                if (stationary.getKapasitasPenyimpanan() == 0) {
+                    System.out.print("Kapasitas penyimpanan  : ");
+                    stationary.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Kapasitas penyimpanan  : %d\n", stationary.getKapasitasPenyimpanan());
+                }
+                if (stationary.getBiayaPenyimpanan() == 0) {
+                    System.out.print("Biaya penyimpanan (Rp.): ");
+                    stationary.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Biaya penyimpanan (Rp.): %d\n", stationary.getBiayaPenyimpanan());
+                }
+                if (stationary.getLamaPenyimpanan() == 0) {
+                    System.out.print("Lama penyimpanan (hari): ");
+                    stationary.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Lama penyimpanan (hari): %d\n", stationary.getLamaPenyimpanan());
+                }
                 System.out.println("Kondisi Penyimpanan    :");
                 System.out.println("1. Pecah belah");
                 System.out.println("2. Bukan pecah belah");
@@ -309,11 +353,9 @@ public class Main {
                         diMenuTambahkanAlatTulis = false;
                         break;
                     default:
-                        stationary.reset();
                         alertPilihanTidakTersedia();
                 }
             } catch (Exception e) {
-                stationary.reset();
                 alertInputTidakValid();
             }
 
@@ -321,20 +363,36 @@ public class Main {
         stationarys.add(stationary);
     }
 
-    private static void menuTambahkanPerkakas() throws InterruptedException, IOException {
+    private static void menuTambahkanDaftarPerkakas() throws InterruptedException, IOException {
         Tool tool = new Tool();
         boolean diMenuTambahkanPerkakas = true;
         do {
             try {
-                System.out.println("================== Tambahkan Jenis Barang ====================");
-                System.out.print("Nama barang            : ");
-                tool.setNamaProduk(scanner.nextLine());
-                System.out.print("Kapasitas penyimpanan  : ");
-                tool.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Biaya penyimpanan (Rp.): ");
-                tool.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
-                System.out.print("Lama penyimpanan (hari): ");
-                tool.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                System.out.println("=========================== Tambahkan Daftar Barang ============================");
+                if (tool.getNamaProduk() == null) {
+                    System.out.print("Nama barang            : ");
+                    tool.setNamaProduk(scanner.nextLine());
+                } else {
+                    System.out.printf("Nama barang            : %s\n", tool.getNamaProduk());
+                }
+                if (tool.getKapasitasPenyimpanan() == 0) {
+                    System.out.print("Kapasitas penyimpanan  : ");
+                    tool.setKapasitasPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Kapasitas penyimpanan  : %d\n", tool.getKapasitasPenyimpanan());
+                }
+                if (tool.getBiayaPenyimpanan() == 0) {
+                    System.out.print("Biaya penyimpanan (Rp.): ");
+                    tool.setBiayaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Biaya penyimpanan (Rp.): %d\n", tool.getBiayaPenyimpanan());
+                }
+                if (tool.getLamaPenyimpanan() == 0) {
+                    System.out.print("Lama penyimpanan (hari): ");
+                    tool.setLamaPenyimpanan(Integer.parseInt(scanner.nextLine()));
+                } else {
+                    System.out.printf("Lama penyimpanan (hari): %d\n", tool.getLamaPenyimpanan());
+                }
                 System.out.println("Kondisi Penyimpanan    :");
                 System.out.println("1. Pecah belah");
                 System.out.println("2. Bukan pecah belah");
@@ -355,11 +413,9 @@ public class Main {
                         diMenuTambahkanPerkakas = false;
                         break;
                     default:
-                        tool.reset();
                         alertPilihanTidakTersedia();
                 }
             } catch (Exception e) {
-                tool.reset();
                 alertInputTidakValid();
             }
 
@@ -370,7 +426,7 @@ public class Main {
     private static void menuMasukkanBarang() throws InterruptedException, IOException {
         boolean diMenuMasukkanBarang = true;
         do {
-            System.out.println("=================== Masukkan Jumlah Barang ====================");
+            System.out.println("=========================== Masukkan Jumlah Barang =============================");
             if (foods.isEmpty() && drinks.isEmpty() && stationarys.isEmpty() && tools.isEmpty()) {
                 System.out.println("Tidak ada barang");
                 garisPutus();
@@ -391,21 +447,22 @@ public class Main {
                 }
             } else {
                 int indeksBarang = 0;
+                System.out.println("Daftar nama barang:");
                 for (int i = 0; i < foods.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, foods.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, foods.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < drinks.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, drinks.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, drinks.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < stationarys.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < tools.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, tools.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, tools.get(i).getNamaProduk());
                 }
                 garisPutus();
                 System.out.println("0. Kembali");
@@ -419,7 +476,7 @@ public class Main {
                         diMenuMasukkanBarang = false;
                     } else if (pilih > 0 && pilih <= indeksBarang) {
                         int cekIndeksBarang = 0;
-                        System.out.println("=================== Masukkan Jumlah Barang ====================");
+                        System.out.println("=========================== Masukkan Jumlah Barang =============================");
                         System.out.print("Jumlah barang: ");
                         int jumlah = Integer.parseInt(scanner.nextLine());
                         garisTepi();
@@ -493,7 +550,7 @@ public class Main {
     private static void menuKeluarkanBarang() throws InterruptedException, IOException {
         boolean diMenuKeluarkanBarang = true;
         do {
-            System.out.println("=================== Keluarkan Barang ===================");
+            System.out.println("=============================== Keluarkan Barang ===============================");
             if (foods.isEmpty() && drinks.isEmpty() && stationarys.isEmpty() && tools.isEmpty()) {
                 System.out.println("Tidak ada barang");
                 garisPutus();
@@ -514,21 +571,22 @@ public class Main {
                 }
             } else {
                 int indeksBarang = 0;
+                System.out.println("Daftar nama barang:");
                 for (int i = 0; i < foods.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, foods.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, foods.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < drinks.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, drinks.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, drinks.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < stationarys.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < tools.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, tools.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, tools.get(i).getNamaProduk());
                 }
                 garisPutus();
                 System.out.println("0. Kembali");
@@ -542,7 +600,7 @@ public class Main {
                         diMenuKeluarkanBarang = false;
                     } else if (pilih > 0 && pilih <= indeksBarang) {
                         int cekIndeksBarang = 0;
-                        System.out.println("=================== Keluarkan Barang ===================");
+                        System.out.println("=============================== Keluarkan Barang ===============================");
                         System.out.print("Jumlah barang: ");
                         int jumlah = Integer.parseInt(scanner.nextLine());
                         garisTepi();
@@ -610,10 +668,10 @@ public class Main {
 
     }
 
-    private static void menuLihatBarang() throws InterruptedException, IOException {
+    private static void menuLihatDetailDaftarBarang() throws InterruptedException, IOException {
         boolean diMenuLihatBarang = true;
         do {
-            System.out.println("===================== Lihat Detail Barang =====================");
+            System.out.println("========================== Lihat Detail Daftar Barang ==========================");
             if (foods.isEmpty() && drinks.isEmpty() && stationarys.isEmpty() && tools.isEmpty()) {
                 System.out.println("Tidak ada barang");
             } else {
@@ -622,11 +680,10 @@ public class Main {
                     indeksBarang++;
                     System.out.printf("%d.  -Nama barang           : %s\n", indeksBarang, foods.get(i).getNamaProduk());
                     System.out.println("    -Jenis barang          : Makanan");
-                    System.out.printf("    -Kapasitas penyimpanan : %d\n", foods.get(i).getKapasitasPenyimpanan());
-                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", foods.get(i).getBiayaPenyimpanan());
-                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", foods.get(i).getLamaPenyimpanan());
-                    System.out.printf("    -Jumlah barang tersedia: %d\n", foods.get(i).getJumlahTersedia());
                     System.out.printf("    -Kondisi barang        : %s\n", foods.get(i).getKondisiPenyimpanan());
+                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", foods.get(i).getLamaPenyimpanan());
+                    System.out.printf("    -Kapasitas penyimpanan : %d\n", foods.get(i).getKapasitasPenyimpanan());
+                    System.out.printf("    -Jumlah barang tersedia: %d\n", foods.get(i).getJumlahTersedia());
                     System.out.println("    -Riwayat barang masuk  : (no) (Jumlah)\t(waktu)");
                     if (foods.get(i).getRiwayatJumlahMasuk().isEmpty()) {
                         System.out.println("                               - Tidak ada");
@@ -643,17 +700,16 @@ public class Main {
                             System.out.printf("                               %d.   %s\n", j + 1, foods.get(i).getRiwayatJumlahKeluar().get(j));
                         }
                     }
-
+                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", foods.get(i).getBiayaPenyimpanan());
                 }
                 for (int i = 0; i < drinks.size(); i++) {
                     indeksBarang++;
                     System.out.printf("%d.  -Nama barang           : %s\n", indeksBarang, drinks.get(i).getNamaProduk());
                     System.out.println("    -Jenis barang          : Minuman");
-                    System.out.printf("    -Kapasitas penyimpanan : %d\n", drinks.get(i).getKapasitasPenyimpanan());
-                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", drinks.get(i).getBiayaPenyimpanan());
-                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", drinks.get(i).getLamaPenyimpanan());
-                    System.out.printf("    -Jumlah barang tersedia: %d\n", drinks.get(i).getJumlahTersedia());
                     System.out.printf("    -Kondisi barang        : %s\n", drinks.get(i).getKondisiPenyimpanan());
+                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", drinks.get(i).getLamaPenyimpanan());
+                    System.out.printf("    -Kapasitas penyimpanan : %d\n", drinks.get(i).getKapasitasPenyimpanan());
+                    System.out.printf("    -Jumlah barang tersedia: %d\n", drinks.get(i).getJumlahTersedia());
                     System.out.println("    -Riwayat barang masuk  : (no) (Jumlah)\t(waktu)");
                     if (drinks.get(i).getRiwayatJumlahMasuk().isEmpty()) {
                         System.out.println("                               - Tidak ada");
@@ -670,17 +726,16 @@ public class Main {
                             System.out.printf("                               %d.   %s\n", j + 1, drinks.get(i).getRiwayatJumlahKeluar().get(j));
                         }
                     }
-
+                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", drinks.get(i).getBiayaPenyimpanan());
                 }
                 for (int i = 0; i < stationarys.size(); i++) {
                     indeksBarang++;
                     System.out.printf("%d.  -Nama barang           : %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
                     System.out.println("    -Jenis barang          : Alat Tulis");
-                    System.out.printf("    -Kapasitas penyimpanan : %d\n", stationarys.get(i).getKapasitasPenyimpanan());
-                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", stationarys.get(i).getBiayaPenyimpanan());
-                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", stationarys.get(i).getLamaPenyimpanan());
-                    System.out.printf("    -Jumlah barang tersedia: %d\n", stationarys.get(i).getJumlahTersedia());
                     System.out.printf("    -Kondisi barang        : %s\n", stationarys.get(i).getKondisiPenyimpanan());
+                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", stationarys.get(i).getLamaPenyimpanan());
+                    System.out.printf("    -Kapasitas penyimpanan : %d\n", stationarys.get(i).getKapasitasPenyimpanan());
+                    System.out.printf("    -Jumlah barang tersedia: %d\n", stationarys.get(i).getJumlahTersedia());
                     System.out.println("    -Riwayat barang masuk  : (no) (Jumlah)\t(waktu)");
                     if (stationarys.get(i).getRiwayatJumlahMasuk().isEmpty()) {
                         System.out.println("                               - Tidak ada");
@@ -697,17 +752,16 @@ public class Main {
                             System.out.printf("                               %d.   %s\n", j + 1, stationarys.get(i).getRiwayatJumlahKeluar().get(j));
                         }
                     }
-
+                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", stationarys.get(i).getBiayaPenyimpanan());
                 }
                 for (int i = 0; i < tools.size(); i++) {
                     indeksBarang++;
                     System.out.printf("%d.  -Nama barang           : %s\n", indeksBarang, tools.get(i).getNamaProduk());
                     System.out.println("    -Jenis barang          : Perkakas");
-                    System.out.printf("    -Kapasitas penyimpanan : %d\n", tools.get(i).getKapasitasPenyimpanan());
-                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", tools.get(i).getBiayaPenyimpanan());
-                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", tools.get(i).getLamaPenyimpanan());
-                    System.out.printf("    -Jumlah barang tersedia: %d\n", tools.get(i).getJumlahTersedia());
                     System.out.printf("    -Kondisi barang        : %s\n", tools.get(i).getKondisiPenyimpanan());
+                    System.out.printf("    -Lama penyimpanan      : %d hari (terhitung dari waktu barang masuk pertama)\n", tools.get(i).getLamaPenyimpanan());
+                    System.out.printf("    -Kapasitas penyimpanan : %d\n", tools.get(i).getKapasitasPenyimpanan());
+                    System.out.printf("    -Jumlah barang tersedia: %d\n", tools.get(i).getJumlahTersedia());
                     System.out.println("    -Riwayat barang masuk  : (no) (Jumlah)\t(waktu)");
                     if (tools.get(i).getRiwayatJumlahMasuk().isEmpty()) {
                         System.out.println("                               - Tidak ada");
@@ -724,7 +778,7 @@ public class Main {
                             System.out.printf("                               %d.   %s\n", j + 1, tools.get(i).getRiwayatJumlahKeluar().get(j));
                         }
                     }
-
+                    System.out.printf("    -Biaya penyimpanan     : Rp.%d\n", tools.get(i).getBiayaPenyimpanan());
                 }
 
             }
@@ -748,10 +802,10 @@ public class Main {
 
     }
 
-    private static void menuHapusBarang() throws InterruptedException, IOException {
+    private static void menuHapusDaftarBarang() throws InterruptedException, IOException {
         boolean diMenuHapusBarang = true;
         do {
-            System.out.println("===================== Hapus Barang =====================");
+            System.out.println("============================= Hapus Daftar Barang ==============================");
             if (foods.isEmpty() && drinks.isEmpty() && stationarys.isEmpty() && tools.isEmpty()) {
                 System.out.println("Tidak ada barang");
                 garisPutus();
@@ -772,21 +826,22 @@ public class Main {
                 }
             } else {
                 int indeksBarang = 0;
+                System.out.println("Daftar nama barang:");
                 for (int i = 0; i < foods.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, foods.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, foods.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < drinks.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, drinks.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, drinks.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < stationarys.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, stationarys.get(i).getNamaProduk());
                 }
                 for (int i = 0; i < tools.size(); i++) {
                     indeksBarang++;
-                    System.out.printf("%d. Nama barang: %s\n", indeksBarang, tools.get(i).getNamaProduk());
+                    System.out.printf("%d. %s\n", indeksBarang, tools.get(i).getNamaProduk());
                 }
                 garisPutus();
                 System.out.println("0. Kembali");
